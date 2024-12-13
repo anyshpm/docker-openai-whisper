@@ -1,0 +1,23 @@
+name: whisper-converter
+
+services:
+  converter:
+    image: anyshpm/openai-whisper:edge
+    container_name: whisper-converter
+    volumes:
+      - /path/to/models:/root/.cache/whisper
+      - /path/to/data:/app
+    command:
+      - whisper
+      - --model=tiny
+      - --language=Chinese
+    #  - --fp16=False
+      - input.mp3
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: nvidia
+    #          count: all
+    #          capabilities:
+    #            - gpu
